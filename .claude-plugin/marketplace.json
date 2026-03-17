@@ -17,8 +17,7 @@
       },
       "description": "Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations",
       "version": "1.0.0",
-      "strict": true,
-      "categories": ["business-analysis", "documentation", "reverse-engineering", "artifact-extraction"]
+      "strict": true
     }
   ]
 }
