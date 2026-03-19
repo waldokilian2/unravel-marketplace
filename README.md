@@ -12,9 +12,9 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
-### Unravel
+### Unravel v1.1.0
 
-**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations
+**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. Now with subagent orchestration model - every extraction uses fresh subagents with two-stage review (spec compliance + quality).
 
 **Categories:** Business Analysis, Documentation, Reverse Engineering
 
@@ -24,6 +24,14 @@ Add this marketplace to Claude Code:
 ```
 
 **Repository:** https://github.com/waldokilian2/Unravel
+
+**What's New in v1.1.0:**
+- Subagent orchestration model (always-on)
+- 9 new agent templates (extractors + reviewers)
+- 4 new orchestration skills (planning, dispatch, orchestration, verification)
+- 3 new commands (/extract, /parallel-extract, /verify)
+- Two-stage review: spec compliance → quality
+- Parallel execution for independent files
 
 ---
 
