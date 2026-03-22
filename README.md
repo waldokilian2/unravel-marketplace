@@ -12,9 +12,9 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
-### Unravel v2.1.0
+### Unravel v2.2.0
 
-**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. User selects what to extract, then Unravel handles the rest. Orchestrators run sequential internally; multiple orchestrators can run in parallel (user choice).
+**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. User selects categories from 4 options, then Unravel handles the rest. All agent spawning is handled sequentially by the main agent - no nested spawning.
 
 **Categories:** Business Analysis, Documentation, Reverse Engineering
 
@@ -23,25 +23,33 @@ Add this marketplace to Claude Code:
 /plugin install unravel@unravel-marketplace
 ```
 
-**Repository:** https://github.com/waldokilian2/Unravel
+**Repository:** https://github.com/waldokilian2/unravel
 
-**What's New in v2.1.0:**
-- **User selection:** Choose which artifact types to extract before starting
-- **Executive summaries:** New unravel-summarizer creates high-level overview after extraction
-- **Orchestrators run sequential internally:** Workers and verifiers one at a time (respects model limits)
-- **Multiple orchestrators:** User chooses parallel or sequential when extracting multiple artifact types
-- **Clarified architecture:** One orchestrator per artifact type
-- **Improved README:** Step-by-step workflow documentation
+**What's New in v2.2.0:**
+- **Flattened architecture:** Removed 2-level agent spawning - main agent now spawns extractors, verifiers, and merger directly
+- **4-option category selection:** New UX within Claude's 4-option limit for artifact type selection
+  - Business Logic (rules, processes, user stories)
+  - Data Specifications (schemas, ORMs, DTOs)
+  - Technical Details (security, integrations)
+  - Everything (all 6 types)
+- **New /unravel command:** Quick invocation for starting Unravel
+- **Orchestrator converted to skill:** orchestrating-extraction skill coordinates workflow
+- **Improved /verify command:** Better documentation and usage examples
+- **Output format clarification:** All extraction skills now document per-module vs merged output
 
 **Architecture:**
-- Simple tasks (< 10 files): Extractor → Output
-- Large tasks (10+ files): Orchestrator → Workers (sequential) → Verifiers (sequential) → Merger → Output
-- Multiple types: User chooses parallel or sequential orchestrators
-- Optional: Summarizer creates EXECUTIVE-SUMMARY.md after all extractions complete
+- Main Agent follows orchestrating-extraction skill
+- Spawns extractors sequentially (one at a time)
+- Spawns verifiers sequentially (one at a time)
+- Spawns merger after all verifications pass
+- Optional: Summarizer creates EXECUTIVE-SUMMARY.md
+
+**Commands:**
+- `/unravel` - Start Unravel extraction with category selection
+- `/verify <file>` - Verify an extraction output
 
 **Agents:**
-- unravel-extractor: Extract patterns from files
-- unravel-orchestrator: Coordinate workers, verifiers, and merger
+- unravel-extractor: Extract patterns from assigned files (per module)
 - unravel-verifier: Independently verify extraction outputs
 - unravel-merger: Combine verified outputs into final file
 - unravel-summarizer: Create executive summary from all outputs
