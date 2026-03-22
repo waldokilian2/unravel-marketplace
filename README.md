@@ -12,9 +12,9 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
-### Unravel v1.1.0
+### Unravel v2.0.0
 
-**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. Now with subagent orchestration model - every extraction uses fresh subagents with two-stage review (spec compliance + quality).
+**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. Smart path selection: single-pass for small tasks, parallel execution with independent verification for large codebases.
 
 **Categories:** Business Analysis, Documentation, Reverse Engineering
 
@@ -25,13 +25,17 @@ Add this marketplace to Claude Code:
 
 **Repository:** https://github.com/waldokilian2/Unravel
 
-**What's New in v1.1.0:**
-- Subagent orchestration model (always-on)
-- 9 new agent templates (extractors + reviewers)
-- 4 new orchestration skills (planning, dispatch, orchestration, verification)
-- 3 new commands (/extract, /parallel-extract, /verify)
-- Two-stage review: spec compliance → quality
-- Parallel execution for independent files
+**What's New in v2.0.0:**
+- **Redesigned architecture:** Simple path (< 10 files) vs Complex path (10+ files)
+- **New agents:** unravel-extractor, unravel-orchestrator, unravel-verifier, unravel-merger
+- **Independent verification:** Complex path includes per-module verification before merge
+- **Parallel execution:** Workers and verifiers run in parallel for speed
+- **Lightweight SessionStart:** 95% reduction in session-start context
+- **Documentation:** Complete workflow documentation in docs/WORKFLOWS.md
+
+**Architecture:**
+- Simple tasks: Extractor → Output (fast, self-verified)
+- Large tasks: Orchestrator → Workers (parallel) → Verifiers (parallel) → Merger → Output (high quality, independently verified)
 
 ---
 
