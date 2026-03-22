@@ -12,9 +12,9 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
-### Unravel v2.0.0
+### Unravel v2.1.0
 
-**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. Smart path selection: single-pass for small tasks, parallel execution with independent verification for large codebases.
+**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. User selects what to extract, then Unravel handles the rest with sequential execution and independent verification.
 
 **Categories:** Business Analysis, Documentation, Reverse Engineering
 
@@ -25,17 +25,24 @@ Add this marketplace to Claude Code:
 
 **Repository:** https://github.com/waldokilian2/Unravel
 
-**What's New in v2.0.0:**
-- **Redesigned architecture:** Simple path (< 10 files) vs Complex path (10+ files)
-- **New agents:** unravel-extractor, unravel-orchestrator, unravel-verifier, unravel-merger
-- **Independent verification:** Complex path includes per-module verification before merge
-- **Parallel execution:** Workers and verifiers run in parallel for speed
-- **Lightweight SessionStart:** 95% reduction in session-start context
-- **Documentation:** Complete workflow documentation in docs/WORKFLOWS.md
+**What's New in v2.1.0:**
+- **User selection:** Choose which artifact types to extract before starting
+- **Executive summaries:** New unravel-summarizer creates high-level overview after extraction
+- **Sequential execution:** Workers and verifiers run one at a time (respects model limits)
+- **Clarified architecture:** One orchestrator per artifact type
+- **Improved README:** Step-by-step workflow documentation
 
 **Architecture:**
-- Simple tasks: Extractor → Output (fast, self-verified)
-- Large tasks: Orchestrator → Workers (parallel) → Verifiers (parallel) → Merger → Output (high quality, independently verified)
+- Simple tasks (< 10 files): Extractor → Output
+- Large tasks (10+ files): Orchestrator → Workers (sequential) → Verifiers (sequential) → Merger → Output
+- Optional: Summarizer creates EXECUTIVE-SUMMARY.md after all extractions complete
+
+**Agents:**
+- unravel-extractor: Extract patterns from files
+- unravel-orchestrator: Coordinate workers, verifiers, and merger
+- unravel-verifier: Independently verify extraction outputs
+- unravel-merger: Combine verified outputs into final file
+- unravel-summarizer: Create executive summary from all outputs
 
 ---
 
