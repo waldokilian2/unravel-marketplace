@@ -12,9 +12,9 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
-### Unravel v2.2.0
+### Unravel v2.3.0
 
-**Description:** Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations. User selects categories, chooses verification level, then Unravel handles the rest with batched parallel execution.
+**Description:** Turn source code into business documentation. Extracts structured artifacts — business rules, process flows, data specs, user stories, security/NFRs, and integrations — from any codebase. Multi-language support (TypeScript, JavaScript, Python, Go, Java).
 
 **Categories:** Business Analysis, Documentation, Reverse Engineering
 
@@ -25,57 +25,45 @@ Add this marketplace to Claude Code:
 
 **Repository:** https://github.com/waldokilian2/unravel
 
-**What's New in v2.2.0:**
-- **Batched parallel execution:** Extractors run in batches of 2 (max 3 concurrent agents total)
-- **User-controlled verification:** Choose independent verification (thorough) or self-verify only (fast)
-- **Automatic surgical fixes:** When verification fails with fixable issues, automatically apply targeted fixes and re-verify
-- **4-option category selection:** UX within Claude's limits for artifact type selection
-  - Business Logic (rules, processes, user stories)
-  - Data Specifications (schemas, ORMs, DTOs)
-  - Technical Details (security, integrations)
-  - Everything (all 6 types)
-- **Orchestrator as skill:** orchestrating-extraction skill coordinates the entire workflow
-- **New /unravel command:** Quick invocation for starting Unravel
+**What It Extracts:**
 
-**Architecture:**
-- Main Agent follows orchestrating-extraction skill
-- Spawns extractors in batches of 2 (parallel within batch, sequential between batches)
-- User chooses: independent verifiers in batches of 2, OR skip to merge
-- Spawns fixer + re-verifies if verification fails with fixable issues
-- Spawns merger after all modules ready
-- Optional: Summarizer creates EXECUTIVE-SUMMARY.md
+| Artifact | What You Get |
+|----------|-------------|
+| Business Rules | Validation constraints, access controls, error conditions |
+| Process Flows | Function call chains, state machines, decision paths |
+| Data Specs | Schemas, ORM models, DTOs, relationships |
+| User Stories | End-user actions from controllers, routes, CLI handlers |
+| Security / NFRs | Auth patterns, rate limits, encryption, logging |
+| Integrations | HTTP clients, database connections, external services |
 
-**Workflow:**
-```
-User → Select type(s) → Choose verification → Main Agent
-  → Batch 1: Extract 2 modules (parallel)
-  → Batch 2: Extract remaining modules (parallel)
-  → [If verification enabled] Batch 1: Verify 2 modules (parallel)
-  → [If verification enabled] Batch 2: Verify remaining modules (parallel)
-  → [If fixable issues] Spawn fixer → Re-verify
-  → Merge all outputs
-  → [Optional] Create executive summary
-```
-
-**Commands:**
-- `/unravel` - Start Unravel extraction with category selection
+**How It Works:**
+1. Select artifact categories (or extract everything)
+2. Choose verification level (self-verify or independent verification)
+3. Unravel discovers files, groups them into modules, extracts in parallel batches
+4. Optional verification catches errors and auto-fixes them
+5. Results saved to `docs/output/` with an optional executive summary
 
 **Agents:**
-- unravel-extractor: Extract patterns from assigned files (per module) with self-verification
-- unravel-verifier: Independently verify extraction outputs (optional, user-controlled)
-- unravel-fixer: Surgically fix specific issues in extraction output (automatic)
-- unravel-merger: Combine verified outputs into final file
-- unravel-summarizer: Create executive summary from all outputs (optional)
+
+| Agent | Role |
+|-------|------|
+| unravel-extractor | Extract patterns from files per module with self-verification |
+| unravel-verifier | Independently verify extraction outputs (optional) |
+| unravel-fixer | Surgically fix issues when verification fails (automatic) |
+| unravel-summarizer | Create executive summary from all outputs (optional) |
 
 **Skills:**
-- orchestrating-extraction: Main orchestration logic
-- using-unravel: User guide and documentation
-- extract-business-rules: Business rules domain knowledge
-- extract-process-flows: Process flows domain knowledge
-- extract-data-specs: Data specs domain knowledge
-- extract-user-stories: User stories domain knowledge
-- extract-security-nfrs: Security/NFRs domain knowledge
-- extract-integrations: Integrations domain knowledge
+
+| Skill | Purpose |
+|-------|---------|
+| using-unravel | Entry point — artifact selection, verification preference |
+| orchestrating-extraction | Per-type workflow — discovery, batching, verification, index |
+| extract-business-rules | Business rules domain knowledge |
+| extract-process-flows | Process flows domain knowledge |
+| extract-data-specs | Data specs domain knowledge |
+| extract-user-stories | User stories domain knowledge |
+| extract-security-nfrs | Security and NFRs domain knowledge |
+| extract-integrations | Integrations domain knowledge |
 
 ---
 
