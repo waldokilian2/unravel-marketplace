@@ -12,7 +12,7 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
-### Unravel v2.3.0
+### Unravel v2.4.0
 
 **Description:** Turn source code into business documentation. Extracts structured artifacts — business rules, process flows, data specs, user stories, security/NFRs, and integrations — from any codebase. Multi-language support (TypeScript, JavaScript, Python, Go, Java).
 
@@ -35,6 +35,17 @@ Add this marketplace to Claude Code:
 | User Stories | End-user actions from controllers, routes, CLI handlers |
 | Security / NFRs | Auth patterns, rate limits, encryption, logging |
 | Integrations | HTTP clients, database connections, external services |
+
+**Synthesis Outputs:**
+
+| Document | Combines | Output |
+|----------|----------|--------|
+| REQUIREMENTS.md | business-rules, user-stories, security-nfrs, process-flows | Functional and non-functional requirements |
+| ARCHITECTURE.md | dependency-map, integrations, process-flows, data-specs | System architecture overview |
+| DATA-DICTIONARY.md | data-specs, domain-vocabulary | Unified data reference |
+| SECURITY-AUDIT.md | security-nfrs, integrations, api-contracts | Security and compliance review |
+| TEST-PLAN.md | test-coverage, business-rules, user-stories | Prioritized test plan |
+| **BUSINESS-SPEC.md** | **ALL 11 extraction types** | **Complete business specification** |
 
 **How It Works:**
 1. Select artifact categories (or extract everything)
@@ -64,6 +75,12 @@ Add this marketplace to Claude Code:
 | extract-user-stories | User stories domain knowledge |
 | extract-security-nfrs | Security and NFRs domain knowledge |
 | extract-integrations | Integrations domain knowledge |
+| synthesize-requirements | Combine business-rules, user-stories, security-nfrs, process-flows into requirements document |
+| synthesize-architecture | Combine dependency-map, integrations, process-flows, data-specs into architecture overview |
+| synthesize-data-dictionary | Combine data-specs and domain-vocabulary into unified data dictionary |
+| synthesize-security-audit | Combine security, integrations, and API contracts into security audit |
+| synthesize-test-plan | Combine test coverage, rules, and stories into prioritized test plan |
+| synthesize-business-spec | **NEW:** Combine ALL 11 extraction types into comprehensive business specification |
 
 ---
 
