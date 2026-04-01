@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Business artifact extraction plugins for Claude Code",
-    "version": "2.3.0"
+    "version": "2.4.0"
   },
   "plugins": [
     {
@@ -16,7 +16,7 @@
         "url": "https://github.com/waldokilian2/unravel.git"
       },
       "description": "Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "strict": true
     }
   ]
