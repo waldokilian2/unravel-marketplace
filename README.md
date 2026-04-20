@@ -1,6 +1,6 @@
 # Unravel Marketplace
 
-Business artifact extraction plugins for Claude Code.
+Claude Code plugins for productivity — business analysis, prompt quality coaching, and more.
 
 ## Installation
 
@@ -81,6 +81,54 @@ Add this marketplace to Claude Code:
 | synthesize-security-audit | Combine security, integrations, and API contracts into security audit |
 | synthesize-test-plan | Combine test coverage, rules, and stories into prioritized test plan |
 | synthesize-business-spec | **NEW:** Combine ALL 11 extraction types into comprehensive business specification |
+
+---
+
+### Qwack v1.0.0
+
+**Description:** Your sassy duck prompt quality coach. Automatically evaluates your first message of each session and roasts you (lovingly) when your prompt is garbage — then fixes it for you.
+
+**Categories:** Productivity, Education, Prompt Engineering
+
+**Install:**
+```bash
+/plugin install qwack@unravel-marketplace
+```
+
+**Repository:** https://github.com/waldokilian2/qwack
+
+**What Qwack Detects:**
+
+| Issue | Example |
+|-------|---------|
+| Vague requests | "fix everything", "make it better" |
+| Missing context | No file paths, no background info |
+| Contradictions | "make it fast but also add every feature" |
+| Redundancy | Repeating the same thing multiple ways |
+| Unnecessary info | Long stories, tangential details |
+
+**How It Works:**
+1. Automatic evaluation of first message per session
+2. Sassy duck feedback with specific complaints
+3. Copyable, optimized prompt provided
+4. One-click acceptance to proceed with improved version
+5. Bypass with "quack: off" anywhere in message
+
+**Example Output:**
+```
+🦆 *QUACK!* Excuse me?! What even IS this?! 🦆
+============================================================
+
+Oh sweet mother of mallard, you want me to "fix the code" but you
+can't even be bothered to tell me WHICH file? WHAT's broken?
+
+============================================================
+
+📝 IMPROVED PROMPT:
+I need help debugging src/auth/login.js - getting 401 errors...
+
+🦆 Want to proceed with improved prompt? (yes/no)
+```
 
 ---
 

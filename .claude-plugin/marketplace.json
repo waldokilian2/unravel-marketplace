@@ -18,6 +18,16 @@
       "description": "Unravel the mysteries in your code - automatic extraction of business rules, processes, data specs, user stories, security, and integrations",
       "version": "2.4.0",
       "strict": true
+    },
+    {
+      "name": "qwack",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/waldokilian2/qwack.git"
+      },
+      "description": "Your sassy duck prompt quality coach - automatically roasts bad prompts and fixes them for you",
+      "version": "1.0.0",
+      "strict": false
     }
   ]
 }
